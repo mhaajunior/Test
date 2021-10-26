@@ -1,0 +1,11 @@
+สมมติให้ให้ตัวแปร objArr เป็น array ของ objects
+เป้าหมายคือเราต้องการ copy (clone) objArr ให้ไปเก็บในตัวแปร clonedArray 
+ขอยกตัวอย่างมา 2 วิธีคือ 
+
+1. let clonedArray = JSON.parse(JSON.stringify(objArr));
+วิธีนี้เป็นวิธี basic เพื่อที่จะหลีกเลี่ยง loop แต่ก็มีข้อจำกัดคือจะสามารถใช้ได้กับ array ที่ object ใน array เป็น JSON-serializable content
+กล่าวคือพวกตัวแปรประเภททั่วไปที่สามารถแปลงเป็น JSON ได้
+
+ 2. let clonedArray = objArr.map(elm => {return {...elm}});
+ วิธีนี้คือการใช้ spread operator คู่กับ .map operator ซึ่งวิธีนี้ดีกว่าวิธีข้างบนมากเพราะมันทำงานได้เร็วกว่ามาก (performance ดีกว่ามาก)
+ และยังสามารถใช้ได้กับ valid object ทุกประเภทใน array ด้วย
